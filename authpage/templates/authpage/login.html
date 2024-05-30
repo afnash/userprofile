@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    
+<div class="container">
+    <div class="form-container">
+        <h2 class="text-muted">Login</h2>
+
+        {% if form.non_field_errors %}
+        <small class="text-danger">
+            {{form.non_field_errors.as_ul}}
+        </small>
+        {% endif %}
+
+        <form method="POST" action="{%url 'info'%}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="{{ form.username.name}}" class="form-control" value="{{form.username.value}}" placeholder="Username"/>
+                <span class="text-danger">{{ form.username.errors}}</span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="password" name="{{ form.password.name}}" class="form-control" value="{{form.password.value}}" placeholder="Password"/>
+                <span class="text-danger">{{ form.password.errors}}</span>
+            </div>
+            <button onclick="location.href='info'">Enter Details</button>
+            <button onclick="location.href='signup'">New to here, Register</button>
+
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
